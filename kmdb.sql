@@ -65,6 +65,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
+.width 10 25 20
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -76,13 +77,11 @@
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
--- Prints a header for the movies output
-.print "Movies"
-.print "======"
-.print ""
+
 
 -- The SQL statement for the movies output
 -- TODO!
+
 
 -- Prints a header for the cast output
 .print ""
@@ -93,3 +92,106 @@
 
 -- The SQL statement for the cast output
 -- TODO!
+
+DROP TABLE IF EXISTS title;
+DROP TABLE IF EXISTS year_released;
+DROP TABLE IF EXISTS mpaa_rating;
+DROP TABLE IF EXISTS director;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS top_cast;
+
+CREATE TABLE title (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+    director_id INTEGER,
+    year_released_id INTEGER
+);
+
+CREATE TABLE year_released (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year INTEGER
+);
+
+CREATE TABLE mpaa_rating (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    rating TEXT
+);
+
+CREATE TABLE director (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT,
+    last_name TEXT
+);
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year_released INTEGER,
+    mpaa_rating TEXT,
+    director TEXT
+);
+
+CREATE TABLE top_cast(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    actor TEXT,
+    screen_name TEXT
+);
+INSERT INTO title (
+    name
+) VALUES ("Batman Begins")
+;
+
+INSERT INTO title (
+    name
+) VALUES ("The Dark Knight")
+;
+
+INSERT INTO title (
+    name
+) VALUES ("The Dark Knight Rises")
+;
+
+INSERT INTO year_released (
+    year
+) VALUES ("2005")
+;
+
+INSERT INTO year_released (
+    year
+) VALUES ("2008")
+;
+
+INSERT INTO year_released (
+    year
+) VALUES ("2012")
+;
+
+INSERT INTO mpaa_rating (
+    rating
+) VALUES ("PG_13")
+;
+
+INSERT INTO mpaa_rating (
+    rating
+) VALUES ("PG_13")
+;
+
+INSERT INTO mpaa_rating (
+    rating
+) VALUES ("PG_13")
+;
+
+INSERT INTO director (
+    first_name,
+    last_name
+) VALUES ("Christopher","Nolan")
+;
+
+-- Prints a header for the movies output
+.print "Movies"
+.print "======"
+.print ""
+
+SELECT title, year_released, mpaa_rating, director FROM movies;
+SELECT title, actor, screen_name FROM top_cast;
